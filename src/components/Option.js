@@ -1,13 +1,18 @@
 import React, { Component } from 'react'
 
-class Option extends Component {
-    render(){
-        return (
-            <div>
-              <li>{this.props.option}</li>
-            </div>
-        );
-    }
+const Option = (props) => {
+    return (
+        <div>
+            <li>
+            {props.option} 
+            <button 
+                onClick={(e) => (props.handleRemoveOne(props.option))}
+            >remove
+            </button>
+            </li>
+        </div>
+    );
 }
+
 
 export default Option;

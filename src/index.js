@@ -12,4 +12,4 @@ import './styles/style.sass'
 const appRoot = document.getElementById('app')
 
 
-ReactDOM.render(<App />, appRoot)
+ReactDOM.render(<App  options={[]}/>, appRoot)

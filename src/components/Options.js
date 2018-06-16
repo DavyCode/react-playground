@@ -4,25 +4,22 @@ import Option from './Option'
 
 
 
-class Options extends Component {
-    constructor(props){
-        super(props)
+const Options = (props) => {
+    function displayOptions(){
+        return props.options.map(item => (
+            <Option key={item} option={item} 
+              handleRemoveOne={props.handleRemoveOne}
+            />
+        ))     
     }
 
-    displayOptions(){
-        const template = this.props.options.map(item => (<Option key={item} option={item} />))
-        return template;
-    }
-
-    render(){
-        return (
-            <div>
-                Options : {this.props.options.length}
-                <button onClick={this.props.handleRemoveAll}>Remove all</button>
-                <ol>{this.displayOptions()}</ol>
-            </div>
-        );
-    }
+    return (
+        <div>
+            Options : {props.options.length}
+            <button onClick={props.handleRemoveAll}>Remove all</button>
+            <ol>{displayOptions()}</ol>
+        </div>
+    );
 }
 
 export default Options;

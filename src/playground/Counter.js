@@ -18,38 +18,39 @@ class Counter extends Component{
         }
     }
 
+    componentDidMount(){
+        try {
+            const countInt = localStorage.getItem('count')
+            const count = parseInt(countInt, 10)
+
+            if(!isNaN(count)) this.setState(() => ({ count }));
+        } catch (error) {
+            //Do nothing
+        }
+    }
+
+    componentDidUpdate(prevProps, prevState){
+        if(prevState.count !== this.state.count){
+            const countJson = JSON.stringify(this.state.count)
+            localStorage.setItem('count', this.state.count)
+        }
+    }
+
     onAddOne(){
-        this.setState(prevState =>{
-            return {
-                count : prevState.count +=1
-            }
-        })
+        this.setState(prevState => ({ count : prevState.count +=1 }))
     }
-
     onMinusOne(){
-        this.setState(prevState =>{
-            return {
-                count : prevState.count -=1
-            }
-        })
+        this.setState(prevState => ({ count : prevState.count -=1 }))
     }
-
     onReset(){
-        this.setState( () => {
-            return {
-                count : 0
-            }
-        })
+        this.setState( () => ({ count : 0}))
     }
-
-
 
     render(){
         return (
             <div>
                 <h2>Counter App</h2>
                 <h1>Count : {this.state.count}</h1>
-
                 <button onClick={this.onAddOne}>+1</button>
                 <button onClick={this.onMinusOne}>-1</button>
                 <button onClick={this.onReset}>Reset Count</button>
@@ -57,6 +58,11 @@ class Counter extends Component{
         )
     }
 }
+
+
+// Counter.defaultProps = {
+//     count : 10
+// }
 
 const appRoot = document.getElementById('app')
 
