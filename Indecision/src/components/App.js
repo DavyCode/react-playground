@@ -4,6 +4,7 @@ import Header from './Header'
 import Action from './Action'
 import Options from './Options'
 import AddOption from './AddOption'
+import { OptionModal } from './OptionModal'
 
 
 class App extends Component {
@@ -13,11 +14,13 @@ class App extends Component {
         this.handleRemoveOne = this.handleRemoveOne.bind(this)
         this.handleMakeDecision = this.handleMakeDecision.bind(this)
         this.handleAddOption = this.handleAddOption.bind(this)
+        this.handleCloseModal = this.handleCloseModal.bind(this)
 
         this.state = {
             options : props.options,
             title : props.title,
-            subtitle : props.subtitle
+            subtitle : props.subtitle,
+            selectedOption : undefined
         }
     }
 
@@ -34,7 +37,6 @@ class App extends Component {
             //Do nothing
         }  
     }
-
     componentDidUpdate(prevProps, prevState){
         if(prevState.options.length !== this.state.options.length){
             const jsonOption = JSON.stringify(this.state.options)
@@ -42,14 +44,15 @@ class App extends Component {
         }
     }
 
-
    /* *********************
     EVENT HANDLERS
     *************************************** */
+    handleCloseModal(){
+        this.setState((prevState) => ({ selectedOption : !prevState.selectedOption}))
+    }
     handleRemoveAll(){
         this.setState(() =>({ options : []}))
     }
-
     handleRemoveOne(optionToBeRemoved){
         this.setState((prevState) => {
             return {
@@ -57,13 +60,12 @@ class App extends Component {
             }
         })
     }
-
     handleMakeDecision(){
        const randNum = Math.floor(Math.random() * this.state.options.length)
-       let selected = this.state.options[randNum]
-       alert(selected)
+       const selected = this.state.options[randNum]
+       
+       this.setState(() => ({ selectedOption : selected }))
     }
-
     handleAddOption(option){
         if(!option){
             return "Please enter a valid item"
@@ -74,20 +76,29 @@ class App extends Component {
     }
 
 
-
     render(){
         return (
             <div>
                 <Header title={this.state.title} subtitle={this.state.subtitle} />
-                <Action hasOptions={!this.state.options.length > 0}
-                    handleMakeDecision={this.handleMakeDecision}
+                <div className="container">
+                    <Action hasOptions={!this.state.options.length > 0}
+                        handleMakeDecision={this.handleMakeDecision}
+                    />
+                    <div className="widget">
+                        <Options options={this.state.options} 
+                            handleRemoveAll={this.handleRemoveAll}
+                            handleRemoveOne={this.handleRemoveOne}
+                        />
+                        <AddOption handleAddOption={this.handleAddOption}/>
+                    </div>
+                    
+                </div>
+                <OptionModal 
+                    handleCloseModal={this.handleCloseModal} 
+                    selectedOption={this.state.selectedOption}
                 />
-                <Options options={this.state.options} 
-                    handleRemoveAll={this.handleRemoveAll}
-                    handleRemoveOne={this.handleRemoveOne}
-                />
-                <AddOption handleAddOption={this.handleAddOption}/>
             </div>
+            
         );
     }
 }

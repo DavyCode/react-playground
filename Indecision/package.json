@@ -1,5 +1,5 @@
 {
-  "name": "my-react-boilerplate",
+  "name": "indecision",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -39,7 +39,9 @@
     "webpack-merge": "^4.1.2"
   },
   "dependencies": {
+    "normalize.css": "^7.0.0",
     "react": "^16.3.2",
-    "react-dom": "^16.3.2"
+    "react-dom": "^16.3.2",
+    "react-modal": "^3.4.5"
   }
 }
