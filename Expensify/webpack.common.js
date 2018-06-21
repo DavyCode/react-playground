@@ -4,7 +4,7 @@ const path = require('path')
 
 module.exports = {
   entry: {
-    main: './src/playground/reduxExpensify.js'
+    main: './src/index.js'
   },
   output: {
     filename: 'bundle.js',
@@ -15,11 +15,11 @@ module.exports = {
     rules: [
       {
         test: /\.js$/,
-        exclude: ['node_modules'],
+        exclude: /node_modules/,
         use: [{ loader: 'babel-loader' }],
       },
       {
-        test: /\.s(a|c)ss$/,
+        test: /\.s?(a|c)ss$/,
         use: [{
           loader: 'style-loader'
         }, {

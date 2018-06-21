@@ -1,10 +1,12 @@
 {
   "presets": [
+    "airbnb",
     "env", 
     "react",
      "stage-2"
     ],
     "plugins": [
-      "transform-object-rest-spread"
+      "transform-object-rest-spread",
+      "transform-replace-object-assign"
     ]
 }

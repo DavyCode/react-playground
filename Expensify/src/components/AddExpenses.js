@@ -1,13 +1,18 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import ExpenseForm from './ExpenseForm'
 
-class About extends Component {
-  render() {
-    return (
-      <div>
-        About
-      </div>
-    )
-  }
-}
+import { addExpense } from '../actions/expenses'
 
-export default About;
+const AddExpenses = (props) => (
+  <div>
+    <h1>Add New Expense</h1>
+    <ExpenseForm
+      onFormSubmit={(expense) => {
+        props.dispatch(addExpense(expense))
+        props.history.push('/')
+      }}
+    />
+  </div>
+)
+export default connect()(AddExpenses)

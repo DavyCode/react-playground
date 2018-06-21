@@ -36,6 +36,10 @@ const editExpense = ( id , updates) => ({
 	updates
 })
 
+
+
+
+
 // SET_TEXT_FILTER
 const setTextFilter = ( text = '' ) => ({
 	type: 'SET_TEXT_FILTER',
@@ -62,6 +66,13 @@ const setEndDate = (date = undefined) => ({
 	type: "SET_END_DATE",
 	date
 })
+
+
+
+
+
+
+
 
 
 // expenses Reducer
@@ -211,21 +222,21 @@ console.log('RM1',expenseTwo.expenses.id)
 
 
 
-const dataStore = {
-    expenses: [{
-        id: 'sdjskkdsk',
-        description: 'June rent',
-        note: 'payment for my current home',
-        amount: 37232,
-        createdAt: Date.now()
-    }],
-    filters: {
-        text: 'rent',
-        sortBy: 'amount',
-        startDate: undefined,
-        endDate: undefined
-    }
-}
+// const dataStore = {
+//     expenses: [{
+//         id: 'sdjskkdsk',
+//         description: 'June rent',
+//         note: 'payment for my current home',
+//         amount: 37232,
+//         createdAt: Date.now()
+//     }],
+//     filters: {
+//         text: 'rent',
+//         sortBy: 'amount',
+//         startDate: undefined,
+//         endDate: undefined
+//     }
+// }
 // console.log(store)
 
 // const user = {
