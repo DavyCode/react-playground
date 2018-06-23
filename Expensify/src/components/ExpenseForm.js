@@ -94,5 +94,4 @@ export default ExpenseForm
 
 
 
-// ["transform-replace-object-assign", { "moduleSpecifier": "lodash.assign" }]
 

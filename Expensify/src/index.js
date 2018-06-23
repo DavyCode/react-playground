@@ -4,7 +4,7 @@ import { Provider } from 'react-redux'
 import App from './components/App'
 import configureStore from './store/configureStore'
 import { addExpense, editExpense, removeExpense } from './actions/expenses'
-import { setEndDate, setStartDate,setTextFilter,sortByAmount,sortByDate} from './actions/filters'
+import { setEndDate, setStartDate, setTextFilter, sortByAmount, sortByDate} from './actions/filters'
 
 import './styles/styles.scss'
 
