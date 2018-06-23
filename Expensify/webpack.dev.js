@@ -3,7 +3,8 @@ const path = require('path')
 const merge = require('webpack-merge');
 const common = require('./webpack.common.js');
 
-module.exports = merge(common, {
+
+const isDev = merge(common, {
   mode: 'development',
   devServer: {
     host: 'localhost',
@@ -11,5 +12,12 @@ module.exports = merge(common, {
     open: true,
     historyApiFallback: true,
     contentBase: path.join(__dirname, 'public')
-  }
+  },
+  devtool:'inline-source-map',
 })
+
+module.exports = (env) => {
+  console.log(env, "****")
+  return isDev
+}
+

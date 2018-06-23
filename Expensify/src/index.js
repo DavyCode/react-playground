@@ -10,7 +10,7 @@ import './styles/styles.scss'
 
 const store = configureStore()
 
-
+console.log('test test tester')
 
 store.dispatch(addExpense({ description: "brighten up my day", amount: 3000, createdAt: 0}))
 store.dispatch(addExpense({ description: "comes back around", amount: 2000, createdAt: 1000}))

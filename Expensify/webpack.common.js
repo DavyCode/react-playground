@@ -1,6 +1,9 @@
-const CleanWebpackPlugin = require('clean-webpack-plugin')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const HtmlWebPackPlugin = require('html-webpack-plugin')
 const path = require('path')
+
+const CSSExtract = new ExtractTextPlugin('style.css')
+
 
 module.exports = {
   entry: {
@@ -20,13 +23,19 @@ module.exports = {
       },
       {
         test: /\.s?(a|c)ss$/,
-        use: [{
-          loader: 'style-loader'
-        }, {
-          loader: 'css-loader'
-        }, {
-          loader: 'sass-loader'
-        }],
+        use: CSSExtract.extract({
+          fallback: "style-loader",
+          use: [
+            {
+              loader: "css-loader",
+              options: { sourceMap: true}
+            },
+            {
+              loader: "sass-loader",
+              options: { sourceMap: true}
+            }
+          ]
+        })
    	  }
     ]
   },
@@ -34,6 +43,6 @@ module.exports = {
     new HtmlWebPackPlugin({
       template: 'index.html'
     }),
-    new CleanWebpackPlugin(['public']),
+    CSSExtract
   ]
 }
