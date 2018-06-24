@@ -11,8 +11,8 @@ class ExpenseListFilter extends Component {
   };
 
   onDatesChange = ({ startDate, endDate }) => {
-    this.props.dispatch(setStartDate(startDate))
-    this.props.dispatch(setEndDate(endDate))
+    this.props.setStartDate(startDate)
+    this.props.setEndDate(endDate)
   }
 
   render() {
@@ -20,14 +20,14 @@ class ExpenseListFilter extends Component {
       <div>
         <input type="text" value={this.props.filters.text} 
           onChange={(e) => {
-            dispatch(setTextFilter(e.target.value))
+            this.props.setTextFilter(e.target.value)
           }
         }
         />
         <select name="{this.props.filters.sortBy}" 
           onChange={(e) => {
-            e.target.value === 'amount' ? this.props.dispatch(sortByAmount())
-            : this.props.dispatch(sortByDate())
+            e.target.value === 'amount' ? this.props.sortByAmount()
+            : this.props.sortByDate()
           }
         }>
           <option value="date">Date</option>
@@ -44,8 +44,6 @@ class ExpenseListFilter extends Component {
           isOutsideRange={() => false}
           showClearDates={true}
         />
-
-
       </div>
     )
   }
@@ -60,4 +58,13 @@ const mapStateToProps  = (state) => (
   }
 );
 
-export default connect(mapStateToProps)(ExpenseListFilter)
+const mapDispatchToProps = (dispatch) => ({
+  setTextFilter: (text) => dispatch(setTextFilter(text)),
+  sortByDate: () => dispatch(sortByDate()),
+  sortByAmount: () => dispatch(sortByAmount()),
+  setStartDate: (startDate) => dispatch(setStartDate(startDate)),
+  setEndDate: (endDate) => dispatch(setEndDate(endDate))
+});
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(ExpenseListFilter)

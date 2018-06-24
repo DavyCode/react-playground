@@ -8,11 +8,11 @@
   },
   "scripts": {
     "serve": "live-server dist/",
-    "build": "webpack -p --env production --config webpack.prod.js",
+    "build:prod": "webpack -p --env production --config webpack.prod.js",
     "dev": "webpack-dev-server --config webpack.dev.js",
-    "test": "jest ./test",
+    "test": "cross-env NODE_ENV=test jest ./test",
     "start": "node server/server.js",
-    "heroku-postbuild": "npm run build"
+    "heroku-postbuild": "npm run build:prod"
   },
   "jest": {
     "setupTestFrameworkScriptFile": "./test/enzyme.setup.js"
@@ -31,7 +31,9 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
     "clean-webpack-plugin": "^0.1.19",
+    "cross-env": "^5.2.0",
     "css-loader": "^0.28.11",
+    "dotenv": "^6.0.0",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
@@ -50,6 +52,7 @@
   },
   "dependencies": {
     "express": "^4.16.3",
+    "firebase": "^5.1.0",
     "moment": "^2.22.2",
     "numeral": "^2.0.6",
     "react": "^16.3.2",

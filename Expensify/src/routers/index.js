@@ -16,7 +16,6 @@ export default () => (
             <Switch>
                 <Route path="/" component={Dashboard} exact={true} />
                 <Route path="/add" component={AddExpenses} />
-                <Route path="/help" component={Help} />
                 <Route path="/edit/:id" component={EditExpenses} />
                 <Route component={NotFound}/>
             </Switch>

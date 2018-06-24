@@ -1,8 +1,17 @@
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
-const HtmlWebPackPlugin = require('html-webpack-plugin')
-const path = require('path')
+const webpack = require('webpack'),
+      ExtractTextPlugin = require('extract-text-webpack-plugin'),
+      HtmlWebPackPlugin = require('html-webpack-plugin'),
+      path = require('path'),
+      CSSExtract = new ExtractTextPlugin('style.css');
 
-const CSSExtract = new ExtractTextPlugin('style.css')
+process.env.NODE_ENV = process.env.NODE_ENV || 'development';
+
+if (process.env.NODE_ENV === 'test') {
+  require('dotenv').config({ path: '.env.test' });
+} else if (process.env.NODE_ENV === 'development') {
+  require('dotenv').config({ path: '.env.development' });
+}
+
 
 
 module.exports = {
@@ -32,7 +41,7 @@ module.exports = {
             },
             {
               loader: "sass-loader",
-              options: { sourceMap: true}
+              options: { sourceMap: true} 
             }
           ]
         })
@@ -40,9 +49,17 @@ module.exports = {
     ]
   },
   plugins: [
+    CSSExtract,
     new HtmlWebPackPlugin({
       template: './public/index.html'
     }),
-    CSSExtract
+    new webpack.DefinePlugin({
+      'process.env.FIREBASE_API_KEY': JSON.stringify(process.env.FIREBASE_API_KEY),
+      'process.env.FIREBASE_AUTH_DOMAIN': JSON.stringify(process.env.FIREBASE_AUTH_DOMAIN),
+      'process.env.FIREBASE_DATABASE_URL': JSON.stringify(process.env.FIREBASE_DATABASE_URL),
+      'process.env.FIREBASE_PROJECT_ID': JSON.stringify(process.env.FIREBASE_PROJECT_ID),
+      'process.env.FIREBASE_STORAGE_BUCKET': JSON.stringify(process.env.FIREBASE_STORAGE_BUCKET),
+      'process.env.FIREBASE_MESSAGING_SENDER_ID': JSON.stringify(process.env.FIREBASE_MESSAGING_SENDER_ID)
+    })
   ]
 }

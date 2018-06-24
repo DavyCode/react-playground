@@ -3,4 +3,5 @@ node_modules/
 
 # Project
 dist/
-firebase.js
+.env.test
+.env.development

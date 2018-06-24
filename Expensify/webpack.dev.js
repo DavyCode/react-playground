@@ -1,5 +1,4 @@
 const path = require('path')
-
 const merge = require('webpack-merge');
 const common = require('./webpack.common.js');
 
@@ -17,7 +16,6 @@ const isDev = merge(common, {
 })
 
 module.exports = (env) => {
-  console.log(env, "****")
   return isDev
 }
 

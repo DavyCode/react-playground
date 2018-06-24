@@ -6,13 +6,14 @@ import numeral from 'numeral'
 
 const ExpenseListItem = (props) =>  (
   <div>
-    <h3>Description : {props.description}</h3>
+    <Link to={`edit/${props.id}`}> 
+      <h3>{props.description}</h3>
+    </Link>
     <p>
       {numeral(props.amount / 100).format('$0,0.00')} 
       :-: 
       {moment(props.createdAt).format('MMMM Do, YYYY')}  
     </p>
-    <Link to={`edit/${props.id}`} >Edit Item</Link>
   </div>
 )
 

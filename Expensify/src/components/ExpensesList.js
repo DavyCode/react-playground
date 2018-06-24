@@ -7,13 +7,19 @@ import ExpenseListItem from './ExpenseListItem'
 
 
 const listItems = (props) => {
-  return props.expenses.map((expense) => (
-      <ExpenseListItem
-        key={expense.id} 
-        {...expense}
-      />
-    )
-  )
+  return (
+        <div>
+          { 
+            props.expenses.length === 0 ? (
+              <p>No expenses</p>
+            ) : (
+                props.expenses.map((expense) => {
+                  return <ExpenseListItem key={expense.id} {...expense} />;
+                })
+              )
+          }
+        </div>
+      )
 }
 
 
