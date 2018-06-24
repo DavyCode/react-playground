@@ -12,7 +12,7 @@ module.exports = {
   output: {
     filename: 'bundle.js',
     publicPath: '/',
-    path: path.resolve(path.join(__dirname, 'public')),
+    path: path.resolve(path.join(__dirname, 'dist')),
   },
   module: {
     rules: [
@@ -41,7 +41,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebPackPlugin({
-      template: 'index.html'
+      template: './public/index.html'
     }),
     CSSExtract
   ]

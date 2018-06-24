@@ -11,7 +11,7 @@ const isDev = merge(common, {
     port: 3000,
     open: true,
     historyApiFallback: true,
-    contentBase: path.join(__dirname, 'public')
+    contentBase: path.join(__dirname, 'dist')
   },
   devtool:'inline-source-map',
 })

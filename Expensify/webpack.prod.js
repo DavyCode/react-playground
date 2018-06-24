@@ -6,7 +6,7 @@ const isProd = merge(common, {
   mode: 'production',
   devtool:'source-map',
   plugins: [
-    new CleanWebpackPlugin(['public']),
+    new CleanWebpackPlugin(['dist']),
   ]
 });
 
